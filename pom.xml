@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--> 
+<!--                Open Simulation Architecture (OSA)                  -->
+<!--                                                                    -->
+<!--      This software is distributed under the terms of the           -->
+<!--           CECILL-C FREE SOFTWARE LICENSE AGREEMENT                 -->
+<!--  (see http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html) -->
+<!--                                                                    -->
+<!--  Copyright © 2006-2015 Université Nice Sophia Antipolis            -->
+<!--  Contact author: Olivier Dalle (olivier.dalle@unice.fr)            -->
+<!--                                                                    -->
+<!--  Parts of this software development were supported and hosted by   -->
+<!--  INRIA from 2006 to 2015, in the context of the common research    -->
+<!--  teams of INRIA and I3S, UMR CNRS 7172 (MASCOTTE, COATI, OASIS and -->
+<!--  SCALE).                                                           -->
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--> 
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>maven-config</artifactId>
+    <groupId>org.osadev.osa</groupId>
+    <version>0.8.0-SNAPSHOT</version>
+    <relativePath>ooo.maven-config</relativePath>
+  </parent>
+
+  <artifactId>osa-release-bundle</artifactId>
+  <name>OSA New Design (newdes) Release Bundle</name>
+  <packaging>pom</packaging>
+
+  <description>
+    This pseudo-project is used to help releasing OSA with the maven-release-project. OSA is structured as a "flat" multi-module project, which is well known to cause errors with the maven-release-plugin.
+    This pom artifact can be used to fix the problem. For this to work, this pom has to be installed one level upper in the hierarchy:
+    
+    ./pom.xml                  -- current pom
+    ./ooo.osa-root/pom.xml     -- OSA Root
+    ./ooo.maven-config/pom.xml -- OSA maven config
+    ...
+    
+  </description>
+
+  <build>
+    <plugins>
+      <plugin>
+	<artifactId>maven-site-plugin</artifactId>
+	<configuration>
+	  <stagingDirectory>${site.stage.dir}</stagingDirectory>
+	  <locales>en</locales>
+	  <chmod>true</chmod>
+	  <inputEncoding>UTF-8</inputEncoding>
+	  <outputEncoding>UTF-8</outputEncoding>
+	</configuration>
+	
+      </plugin>
+      
+      
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-javadoc-plugin</artifactId>
+	<version>2.10.3</version>
+	<configuration>
+          <excludePackageNames>${javadoc.aggregate.excludes}</excludePackageNames>
+	  
+	  <detectLinks>true</detectLinks>
+	  <!-- <aggregate>true</aggregate> -->
+	  <minmemory>128m</minmemory>
+	  <maxmemory>2g</maxmemory>
+	  <verbose>true</verbose>
+	  <links>
+	    <link>${asm.url}</link>
+	    <link>${fractal.url}</link>
+	    <link>http://fractal.ow2.org/current/doc/javadoc/fractal/</link>
+	    <link>http://fractal.ow2.org/current/doc/javadoc/fractal-adl/</link>
+	    <link>http://fractal.ow2.org/fractaladl-site/current/task-framework/apidocs/</link>
+	    <link>http://fractal.ow2.org/current/doc/javadoc/julia/</link>
+	    <link>http://java.sun.com/j2se/1.5.0/docs/guide/javadoc/doclet/spec</link>
+	    <link>${jdk.url}</link>
+	  </links>
+
+	  <show>package</show>
+	  <version>true</version>
+	  <!--  <javadocVersion>1.6</javadocVersion> -->
+
+	  <!--  <source>${osa.bundle.version}</source> -->
+	  
+	  <!--  <code>javadoc:aggregate</code> -->
+	  <!-- <code>javadoc:test-aggregate</code> -->
+	  <!-- <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet> -->
+	  <!-- use this line or use the variable GRAPHVIZ_HOME <docletPath>/opt/local/bin/dot</docletPath> -->
+	  <!--  <useStandardDocletOptions>true</useStandardDocletOptions> -->
+
+	  <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+	  <docletArtifact>
+	    <groupId>org.umlgraph</groupId>
+	    <artifactId>umlgraph</artifactId>
+	    <version>5.6</version>
+	  </docletArtifact>
+	  <additionalparam>
+	    -dotexecutable ${dot.executable.path}
+	    -inferrel -inferdep -hide java.*
+	    -collpackages java.util.* -qualify
+	    -postfixpackage -nodefontsize 9
+	    -nodefontpackagesize 7
+	  </additionalparam>
+	</configuration>
+      </plugin>
+      
+      <!-- Keep this on with release plugin. -->
+      <plugin>
+        <artifactId>maven-scm-plugin</artifactId>
+        <configuration>
+          <connectionType>developerConnection</connectionType>
+          <tag>${project.artifactId}-${project.version}</tag>
+        </configuration>
+      </plugin>
+      <plugin>
+	<artifactId>maven-release-plugin</artifactId>
+	<configuration>
+	  <tagBase>${scm.reg.url}</tagBase>
+	  <checkModificationExcludes>
+	    <checkModificationExclude>.project</checkModificationExclude>
+	  </checkModificationExcludes>
+	  <autoVersionSubmodules>true</autoVersionSubmodules>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <modules>
+    <module>ooo.osa-root</module>
+  </modules>
+</project>
+
+
