@@ -1,0 +1,8 @@
+.settings
+*~
+#*
+target/
+*.md.html
+/bin/
+.#.*
+/src/main/java/org/osadev/osa/engines/newdes/membrane/

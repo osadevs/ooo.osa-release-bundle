@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--> 
+<!--                Open Simulation Architecture (OSA)                  -->
+<!--                                                                    -->
+<!--      This software is distributed under the terms of the           -->
+<!--           CECILL-C FREE SOFTWARE LICENSE AGREEMENT                 -->
+<!--  (see http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html) -->
+<!--                                                                    -->
+<!--  Copyright © 2006-2015 Université Nice Sophia Antipolis            -->
+<!--  Contact author: Olivier Dalle (olivier.dalle@unice.fr)            -->
+<!--                                                                    -->
+<!--  Parts of this software development were supported and hosted by   -->
+<!--  INRIA from 2006 to 2015, in the context of the common research    -->
+<!--  teams of INRIA and I3S, UMR CNRS 7172 (MASCOTTE, COATI, OASIS and -->
+<!--  SCALE).                                                           -->
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++-->
+<project name="Open Simulation Architecture"
+	xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+
+	<bannerLeft>
+		<name>Open Simulation Architecture</name>
+		<href>http://www.osadev.org/</href>
+  	</bannerLeft>
+  	<bannerRight>
+		<name></name>
+  	</bannerRight>
+	<body>
+		<menu name="OSA" inherit="top">
+			<item name="Home" href="index.html" />
+			<item name="Projects" href="galaxy.html" />
+			<item name="Helloworld" href="helloworld.html" />
+			<item name="Publications" href="publications.html" />
+			<item name="About" href="about.html"/>
+			<item name="Tips" href="tips.html" />
+		</menu>
+		<menu name="Documentation" inherit="top">
+			<item name="Tutorial" href="./tutorial/index.html"/>
+		</menu>
+		<menu name="Links">
+			<item name="OSA on INRIA's forge" href="http://osa.gforge.inria.fr"/>
+		</menu>
+	</body>
+	<publishDate position="right" />
+	<version position="right" />
+	<skin>
+		<groupId>org.apache.maven.skins</groupId>
+		<artifactId>maven-application-skin</artifactId>
+		<version>1.0</version>
+    	<!-- <artifactId>maven-stylus-skin</artifactId> -->
+    	<!-- <version>1.4</version> -->
+	</skin>
+</project>

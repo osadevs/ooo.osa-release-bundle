@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>ooo.simapis.newdes.osalet</name>
+	<comment>osalet is a small annotation package inspired from Fraclet to help building 
+	OSA simulation components based on the Fractal/Julia component framework. Indeed, an OSA
+	simulation component is a regular Fractal component with an added simulation controller
+	that provides teh API to the business part of the component. This simulation also to be
+	connected to other simulation components in order to synchronize the scheduling of events.
+	This synchronization is normally handled by a dedicated component called a &quot;SuperScheduler&quot;.
+	What osalet does is to auto-magically insert and connect the superscheduler components 
+	altogether. This is done by inserting automatically a fraclet annotation in the component. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>org.eclipse.m2e.core.maven2Builder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.m2e.core.maven2Nature</nature>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+</projectDescription>

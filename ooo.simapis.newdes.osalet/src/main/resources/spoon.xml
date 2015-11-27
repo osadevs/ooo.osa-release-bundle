@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spoon>
+	
+	<processor name="Simulation Controller Event Processor" class="org.osadev.osa.simapis.newdes.event.spoon.SimulationControllerProcessor"
+		active="true"
+		doc="add event simulation controller to simulation component
+		implementation (simulationMarker)">
+	</processor>
+	
+	<template folder="org/osadev/osa/simapis/newdes/event/spoon" />
+	
+	
+	<processor name="Simulation Controller Process Processor" class="org.osadev.osa.simapis.newdes.process.spoon.SimulationControllerProcessor"
+		active="true"
+		doc="add process simulation controller to simulation component
+		implementation (simulationMarker)">
+	</processor>
+	
+	<template folder="org/osadev/osa/simapis/newdes/process/spoon" />
+
+</spoon>

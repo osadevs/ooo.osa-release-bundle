@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!-- Open Simulation Architecture (OSA)                                  -->
+<!--                                                                     -->
+<!-- This software is distributed under the terms of the                 -->
+<!-- CECILL-C FREE SOFTWARE LICENSE AGREEMENT                            -->
+<!-- (see http://www.cecill.info/licences/Licence_CeCILL-C_V1-en.html)   -->
+<!--                                                                     -->
+<!-- Copyright © 2006-2015 Université Nice Sophia Antipolis              -->
+<!-- Contact author: Olivier Dalle (olivier.dalle@unice.fr)              -->
+<!--                                                                     -->
+<!-- Parts of this software development were supported and hosted by     -->
+<!-- INRIA from 2006 to 2015, in the context of the common research      -->
+<!-- teams of INRIA and I3S, UMR CNRS 7172 (MASCOTTE, COATI, OASIS and   -->
+<!-- SCALE).                                                             -->
+<!--++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.osadev.osa</groupId>
+		<artifactId>osa-root</artifactId>
+		<version>0.8.0-SNAPSHOT</version>
+		<relativePath>../ooo.osa-root/</relativePath>
+	</parent>
+
+	<artifactId>maven-config</artifactId>
+	<packaging>pom</packaging>
+	<name>OSA Maven Configuration</name>
+
+	
+	<description>
+		This is the top-level modules for building other OSA modules. It contains the detailed specifications 
+		of the dependencies, such that those details are not spread around and possibly inconsistent.
+	</description>
+
+	<properties>
+		<!-- Some version infos -->
+		
+		<julia.bundle.version>2.5.2</julia.bundle.version>
+		<koch.bundle.version>2.5.2.1</koch.bundle.version>
+		<fraclet.bundle.version>3.2.3</fraclet.bundle.version>
+		<osa.bundle.version>0.8.0</osa.bundle.version>
+	</properties>
+
+	<!-- FIXME: this config pom is part of the osa basic bundle.
+		It should rather be made external and self-contained such that
+		multiple bundles can depend on it. -->
+	<build>
+		<!-- Configure plugin execution for the current maven pom -->
+		<plugins>
+			
+			
+          	<!-- Add automatic generation of source archive to all descendent projects 
+				such that the sources can be automatically downloaded and installed along 
+				with the binary archive. -->
+				<plugin>
+					<artifactId>maven-source-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>attach-sources</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+		</plugins>
+		
+		<!-- To define the plugin version in your parent POM -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.3</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+      				<groupId>com.github.jeluard</groupId>
+      				<artifactId>plantuml-maven-plugin</artifactId>
+      				<version>1.1</version>
+      			</plugin>
+				
+				<plugin>
+					<groupId>com.kryshchuk.maven.plugins</groupId>
+					<artifactId>umlet-maven-plugin</artifactId>
+					<version>1.1.7od</version>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-javadoc-plugin</artifactId>
+					<version>2.10.3</version>
+				</plugin>
+				
+				<plugin>
+					<groupId>maven-plugins</groupId>
+					<artifactId>maven-dotuml-plugin</artifactId>
+					<version>1.0</version>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-source-plugin</artifactId>
+					<version>2.4</version>
+				</plugin>
+				
+				<!--This plugin's configuration is used to store Eclipse m2e settings 
+					only. It has no influence on the Maven build itself. -->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											exec-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.1.1,)
+										</versionRange>
+										<goals>
+											<goal>java</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											com.github.jeluard
+										</groupId>
+										<artifactId>
+											plantuml-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.1,)
+										</versionRange>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.objectweb.fractal</groupId>
+				<artifactId>fractal-api</artifactId>
+				<version>2.0.2</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.julia</groupId>
+				<artifactId>julia-mixins</artifactId>
+				<version>${julia.bundle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.julia</groupId>
+				<artifactId>julia-asm</artifactId>
+				<version>${julia.bundle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.julia</groupId>
+				<artifactId>koch-runtime</artifactId>
+				<version>${koch.bundle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.julia</groupId>
+				<artifactId>koch-mixins</artifactId>
+				<version>${julia.bundle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.julia</groupId>
+				<artifactId>koch-mc</artifactId>
+				<version>${koch.bundle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.julia</groupId>
+				<artifactId>julia-runtime</artifactId>
+				<version>${julia.bundle.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal</groupId>
+				<artifactId>fractal-util</artifactId>
+				<version>1.1.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.fraclet.java</groupId>
+				<artifactId>fractaladl-spoonlet</artifactId>
+				<version>${fraclet.bundle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.fraclet.java</groupId>
+				<artifactId>fraclet-annotations</artifactId>
+				<version>${fraclet.bundle.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.7.10</version>
+			</dependency>
+			<dependency>
+				<groupId>xerces</groupId>
+				<artifactId>xercesImpl</artifactId>
+				<version>2.4.0</version>
+			</dependency>
+			<dependency>
+				<groupId>fr.inria.gforge.spoon</groupId>
+				<artifactId>spoon-core</artifactId>
+				<version>1.4.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-pool</groupId>
+				<artifactId>commons-pool</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>18.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-slf4j-impl</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.logging.log4j</groupId>
+				<artifactId>log4j-core</artifactId>
+				<version>2.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.objectweb.fractal.fractaladl</groupId>
+				<artifactId>fractal-adl</artifactId>
+				<version>2.3.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.osadev.osa.simapis</groupId>
+				<artifactId>osa-simapis-newdes</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.osadev.osa.runtime.newdes.logger</groupId>
+				<artifactId>osa-logger-slf4j</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.osadev.osa.simapis</groupId>
+				<artifactId>osa-simapis-newdes-osalet</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.osadev.osa.runtime.newdes</groupId>
+				<artifactId>osa-rt-newdes-event-launcher</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.osadev.osa.engines</groupId>
+				<artifactId>osa-engines-newdes</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<profiles>
+	<!-- Building javadoc takes time. Only build on request by activating this profile. -->
+		<profile>
+			<id>javadoc-only</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.jeluard</groupId>
+						<artifactId>plantuml-maven-plugin</artifactId>
+						<version>1.1</version>
+						
+						<configuration>
+							<sourceFiles>
+								<directory>${basedir}</directory>
+								<includes>
+									<include>src/main/plantuml/**/*.txt</include>
+								</includes>
+							</sourceFiles>
+						</configuration>
+						
+						<dependencies>
+							<dependency>
+								<groupId>net.sourceforge.plantuml</groupId>
+								<artifactId>plantuml</artifactId>
+								<version>7999</version>
+							</dependency>
+						</dependencies>
+					</plugin>
+					
+					<plugin>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<groupId>org.apache.maven.plugins</groupId>
+						<version>2.10.3</version>
+						
+						<executions>
+						<execution>
+							<id>attach-javadocs</id>
+							<goals>
+								<goal>jar</goal>
+							</goals>
+						</execution>
+					</executions>
+						
+						<configuration>
+							<show>package</show>
+							<version>true</version>
+							<minmemory>128m</minmemory>
+          					<maxmemory>2g</maxmemory>
+							<!--  <javadocVersion>1.6</javadocVersion> -->
+							<detectLinks>true</detectLinks>
+							<links>
+								<link>${asm.url}</link>
+								<link>${fractal.url}</link>
+								<link>http://fractal.ow2.org/current/doc/javadoc/fractal-adl/</link>
+								<link>http://fractal.ow2.org/fractaladl-site/current/task-framework/apidocs/</link>
+								<link>http://fractal.ow2.org/current/doc/javadoc/julia/</link>
+								<link>http://java.sun.com/j2se/1.5.0/docs/guide/javadoc/doclet/spec</link>
+								<link>${jdk.url}</link>
+							</links>
+							<source>${osa.bundle.version}</source>
+							<code>javadoc:aggregate</code>
+							<!--  <code>javadoc:test-aggregate</code> -->
+							<!--  <doclet>org.umlgraph.doclet.UmlGraphDoc</doclet> -->
+							<!-- use this line or use the variable GRAPHVIZ_HOME <docletPath>/opt/local/bin/dot</docletPath> -->
+							
+							<useStandardDocletOptions>true</useStandardDocletOptions>
+		
+							<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
+							<docletArtifact>
+								<groupId>org.umlgraph</groupId>
+								<artifactId>umlgraph</artifactId>
+								<version>5.6</version>
+							</docletArtifact>
+							<additionalparam>
+							    -dotexecutable ${dot.executable.path}
+								-inferrel -inferdep -hide java.*
+								-collpackages java.util.* -qualify
+								-postfixpackage -nodefontsize 9
+								-nodefontpackagesize 7
+							</additionalparam>
+						</configuration>
+						
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	
+</project>

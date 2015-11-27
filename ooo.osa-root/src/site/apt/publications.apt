@@ -1,0 +1,21 @@
+OSA Papers
+
+	* <<Judica‘l Ribault>>, <<Olivier Dalle>>, <<Denis Conan>>, and <<Sebastien Leriche>> (2010) <OSIF: A Framework To Instrument, Validate, and Analyze Simulations.> In Proc. of 3rd Intl. ICST Conference on Simulation Tools and Techniques	(SIMUToolsÕ2010). Torremolinos, Spain, 15Ð19 March. ({{{http://hal.inria.fr/docs/00/46/51/41/PDF/RDCL09.pdf}PDF}})
+
+	* <<Himmelspach, Jan>> and <<Dalle, Olivier>>, and <<Ribault, Judicael>>. <Design considerations for M&S software.> In D. Rossetti, In Proc. of the Winter Simulation Conference (WSC'09), Austin, TX, December. 
+	
+	* <<Ribault, Judicael>> and <<Peix, Fabrice>> and <<Monteiro, Julian>> and <<Dalle, Olivier>> (2009) <OSA: an Integration Platform for Component-Based Simulation.> Poster in Second Intl. Conf. on Simulation Tools and Techniques (SIMUTools09). Rome, Italy , March. 
+	
+	* <<Ribault, Judicael>> and <<Dalle, Olivier>> (2008) <Enabling advanced simulation scenarios with new software engineering techniques.> In 20th European Modeling and Simulation Symposium (EMSS 2008). Briatico, Italy. ({{{ftp://ftp-sop.inria.fr/mascotte/Publications/RiDa08.pdf}PDF}})
+	
+	* <<Dalle, Olivier>> and <<Mrabet, Cyrine>> (2007) <An Instrumentation Framework for component-based simulations based on the Separation of Concerns paradigm.> In Proc. of 6th EUROSIM Congress (EUROSIMâ€™2007). Ljubljana, Slovenia, September 9-13. ({{{ftp://ftp-sop.inria.fr/mascotte/Publications/DaMr07.pdf}PDF}})
+	
+	* <<Dalle, Olivier>> (2007) <The OSA Project: an Example of Component Based Software Engineering Techniques Applied to Simulation.> Invited paper at the Summer Computer Simulation Conference (SCSC'07), San Diego, CA.
+	
+	* <<Dalle, Olivier>> (2007) <Component-based Discrete Event Simulation Using the Fractal Component Model.> In AI, Simulation and Planning in High Autonomy Systems (AIS)-Conceptual Modeling and Simulation (CMS) Joint Conference. Buenos Aires, AR, February.
+	
+	* <<Dalle, Olivier>> (2006) <OSA: an Open Component-based Architecture for Discrete-Event Simulation.> In 20th European Conference on Modeling and Simulation (ECMS). Bonn, Germany, May, pages 253-259. 
+	
+	* <<Dalle, Olivier>> (2006) <OSA: an Open Component-based Architecture for Discrete-Event Simulation.> Technical report RR-5762, version 2, INRIA.
+	
+ 

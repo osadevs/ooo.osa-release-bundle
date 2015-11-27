@@ -1,0 +1,202 @@
+ ---
+ Tips & Tricks
+ ---
+ Olivier Dalle
+ ---
+
+Tips & tricks
+ 
+   This page contains useful information about the project structure and configuration.
+Information contained in this page is redundant with, and possibly outdated by, the official 
+documentation pages of the tools used in OSA. (Standard disclaimer bla-bla here, we cannot be held
+responsible, ...)
+
+Building and deploying this site
+
+   This site is built using the maven site plugin (we use maven for everything in OSA). For those using or taking
+   over this project, it might be a bit difficult to find what to edit and how to put it online.
+   Here is the backstage. 
+   
+   The pages are written in Doxia/APT format, which is the standard maven format. The sources are
+   placed in an <<<apt>>> package in the <<<src/site>>> directory of <each> project. Indeed, this
+   documentation/web-site content is scattered among {{{galaxy.html}all the OSA projects}}. The 
+   root of the documentation (including this page) can be found in the osa root package
+   (<<<fr.inria.osa.root>>>).
+   
+   The root <<<pom.xml>>> contain the following declarations for compiling the apt sources:
+
++-----------------------------------------------------------------+
+<project>
+	...
+	...
+	<distributionManagement>
+		<repository>
+			<id>osamavenrepository</id>
+			<name>OSA Repository</name>
+			<url>dav:http://osa.inria.fr/osa_repo/</url>
+			<uniqueVersion>false</uniqueVersion>
+		</repository>
+		<site>
+			<id>osawebsite</id>
+			<url>dav:http://osa.inria.fr/osa_website/0.7/</url>
+		</site>
+	</distributionManagement>
+	
+	<build>
+		<plugins>
+			...
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					...
+				</configuration>
+			</plugin>
+			...
+		</plugins>
+	</build>
+	
+	...
+</build>
++-----------------------------------------------------------------+
+
+   Notice we use a WebDAV service for deploying the site on the OSA server, because ssh to the 
+   server is not allowed from outside INRIA.
+   
+   We give more details later on about the <<<maven-site-plugin>>>. 
+   
+   For WebDAV to work, you need an additional plugin and a wagon extension in the build section of the <<<pom.xml>>>:
+   
++-----------------------------------------------------------------+
+<project>
+	...
+	...
+	<build>
+		<plugins>
+			...
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.7</version>
+			</plugin>
+			...
+		</plugins>
+		...
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav-jackrabbit</artifactId>
+				<version>2.1</version>
+			</extension>
+		</extensions>
+	</build>
+	...
+</project>
++-----------------------------------------------------------------+
+   
+   
+   In Addition, the <<<settings.xml>>> located in your <<<.m2>>> directory should contain
+   credential for uploading on the server:
+   
++---------------+
+   <servers>
+        <server>
+            <id>osadevrepo</id>
+            <username>odalle</username>
+            <password> ... </password>
+        </server>
+        <server>
+            <id>osawebsite</id>
+            <username>odalle</username>
+            <password> ... </password>
+        </server>
+    </servers>
++---------------+
+   
+   
+   
+   
+   The commands used for producing and deploying the site are the following:
+   
+*--------------------+--------------------------+
+|<<<mvn site:site>>>  | Compile and produce html in the project target directeory
+*--------------------+--------------------------+
+|<<<mvn site:stage>>> | Copies html in a local directory to check that files produced
+|                     | by multiple projects do work together before uploading on the
+|                     | production server
+*--------------------+--------------------------+
+|<<<mvn site:deploy>>>| Upload the files on the production server
+*--------------------+--------------------------+
+
+	Most maven sites action can be (re)configured. For example, to set the stage dirctory in the
+	<<</tmp/osaweb/>>> directory of my machine, I did add the following configuration:
+	
++---------+
+			...
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<stagingDirectory>/tmp/osaweb/</stagingDirectory>
+					...
+				</configuration>
+			</plugin>
++---------+
+
+	Another import part of the tuning is the selection of <<<maven-site-plugin>>> (sub)plugins. For example, in OSA
+	we include the following in OSA subprojects that include code:
+	
++---------+
+			...
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					...
+					<reportPlugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-javadoc-plugin</artifactId>
+							<version>2.8</version>
+							<configuration>
+								<show>public</show>
+								<detectLinks>true</detectLinks>
+								<links>
+									<link>http://fractal.ow2.org/current/doc/javadoc/fractal/</link>
+									<link>http://fractal.ow2.org/current/doc/javadoc/fractal-adl/</link>
+									<link>http://fractal.ow2.org/fractaladl-site/current/task-framework/apidocs/</link>
+									<link>http://fractal.ow2.org/current/doc/javadoc/julia/</link>
+								</links>
+							</configuration>
+						</plugin>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-project-info-reports-plugin</artifactId>
+							<version>2.4</version>
+							<reports>
+								<report>distribution-management</report>
+								<report>index</report>
+								<report>dependencies</report>
+								<report>help</report>
+								<!-- <report>issue-tracking</report> -->
+								<report>plugins</report>
+								<!-- <report>cim</report> -->
+								<report>license</report>
+								<report>dependency-management</report>
+								<!-- <report>mailing-list</report> -->
+								<report>project-team</report>
+								<report>dependency-convergence</report>
+								<report>scm</report>
+								<report>plugin-management</report>
+								<report>modules</report>
+								<report>summary</report>
+							</reports>
+						</plugin>
+   					</reportPlugins>
+   				</configuration>
+   			</plugin>
++---------+
+   

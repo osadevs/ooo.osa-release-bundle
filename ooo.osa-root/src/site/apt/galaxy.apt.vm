@@ -1,0 +1,83 @@
+ ---
+ OSA Projects Galaxy
+ ---
+ The OSA Team
+ ---
+ 
+OSA Projects Galaxy
+
+   Since OSA is a research project, it went through quite a complex development history.
+   The very first implementations developed by Olivier were called SPR (Single Process
+   Reentrant). These version have been obsoleted by the following ones, but are still
+   available on the INRIA OSA forge with version \<= 0.4.
+   
+   OSA version 0.6 is a major refactoring impulsed by Fabrice Peix and Judicael Ribault
+   when they joined the project. Part of the funding did come from a P2P research project 
+   called SPREADS for which a demo version of a P2P simulation has been developped
+   and is available on the INRIA OSA forge.
+   
+   The version 0.7 was a heavy refactoring of the latest by Olivier but still 
+   including parts of the version contributed by Judicael during his PhD thesis and based
+   on the Spoon Java code processor (rather the AspectJ in previous versions).
+   The SusperScheduler has been totally rewritten by Olivier, and the project structure
+   has been scattered into many children project with a flat structure rather than submodules.
+   However, "Bundles" grouping sets of sub-projects are provided for convenience.
+   
+   The current version 0.8 is lighter refactoring with focus on distribution and project
+   management: a new domain osadev.org is used, and packages have been renamed accordingly.
+   The overall project hierarchy has been redesigned and the maven phase have been fine tuned
+   such that every lifecycle can run smoothly. The sources have also moved to github.
+   
+   Here are the corresponding maven (sub)projects of OSA:
+   
+*-----------*-------------------+-------------------+--------------------------------+----------+
+| <<name>>  | <<parent>>        |  <<Maven artifact>>     | <<Description>>                | <<GIT>> (*)   |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|{{{./index.html}OSA Root}} |  None             | <<<o.o.o:>>>         | Root project. Almost empty,                                              |  <<< <GH>/osadevs/ooo.osa-root.git>>>  |  
+|               |                   |   <<<osa-root>>>     | some common defs. Main location of the common site sources (Doxia/APT).  |         |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|{{{./maven-config/index.html}Maven Config}} |  <<<o.o.o:>>>             | <<<o.o.o:>>>         | Configuration project, to be used as effective root by                  |  <<< <GH>/osadevs/ooo.maven-config.git>>>  |  
+|               |     <<<osa-root>>>         |   <<<maven-config>>>     | other modules. Contains dependencies specifications.  |          |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|{{{./maven-config/osa-simapis/index.html}simapis}}| <<<o.o.o:>>>   |<<<o.o.o.simapis:>>>  | Common ancestor for all APIs.  |  <<< <GH>/osadevs/ooo.simapis.git>>> |  
+|                                      | <<<maven-config>>> |  <<<osa-simapis>>> |                                |  <<<org.osadev.osa.simapis>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|{{{./osa-simapis/osa-simapis-basic/index.html}<<<basic API>>>}}|<<<f.i.o.simapis:>>>  | <<<f.i.o.simapis:>>>       | OSA Reference API. Supports event-driven  |  <<< <svnRoot>/packages/apis/>>>                     |
+|                                                               | <<<osa-simapis>>>     | <<<osa-simapis-basic>>>   | and process-oriented modeling.            |  <<<fr.inria.osa.simapis.basic>>>                    |  
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|{{{./osa-simapis/osa-simapis-basic/osa-simapis-osalet}<<<basic osalet>>>}}| <<<f.i.o.simapis:>>>  |<<<f.i.o.o-sa.simapis:>>> | Sponlet processor for OSA (adds |   <<< <svnRoot>/packages/apis/>>>        |
+|                                                                          | <<<osa-simapis>>>     |<<<osa--basic-osalet>>>   | osa API artifacts to models)    |   <<<fr.inria.osa.simapis.osalet>>>       |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|<<<devsAPI>>>|                    |     |   To be continued  |          |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|{{{./osa-engines/index.html}<<<simengines>>>}}|<<<f.i.o:>>>  |<<<f.i.o.simengines:>>>| Common ancestor for all     |    <<< <svnRoot>/packages/engines/>>>    |
+|                                                             |<<<osa-root>>>| <<<osa-simengines>>>  | engines.                    |    <<<fr.inria.osa.engines>>>       |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|{{{./osa-engines/osa-engines-basic/index.html}<<<basic Engine>>>}}| <<<f.i.o.simengines:>>> | <<<f.i.o.simengines:>>> | OSA Reference <process-based>  |  <<< <svnRoot>/packages/engines/>>>   |
+|                                                      | <<<osa-simengines>>>    |    <<<osa-engines-basic>>>               | Engine (implements the basic API) |   <<<fr.inria.osa.engines.basic>>>         |  
+*-----------*-------------------+-------------------+--------------------------------+----------+
+|           |                   |                   |  |   |
+*-----------*-------------------+-------------------+--------------------------------+----------+          
+| {{{./osa-logger-slf4j/index.html}<<<OSA Logger>>>}} | <<<f.i.o:>>> | <<<f.i.o.runtime.logger:>>>     | Logging facility basd on SLF4J. |  <<< <svnRoot>/packages/runtime/>>> |
+|                    | <<<osa-root>>>              |  <<<osa-logger-slf4j>>>          | (Adds simulation time-stamps to SL4J logs)         |  <<<fr.inria.osa.runtime.logger>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+  
+| {{{./osa-runtime-basic-loader/index.html}<<<Basic Loader>>>}} | <<<f.i.o:>>> | <<<f.i.o.runtime:>>>     | Runtime support for OSA Engines & APIs |  <<< <svnRoot>/packages/runtime/>>> |
+|                    | <<<osa-root>>>              |  <<<osa-runtime-basic-loader>>>          | (ADL Extensions)                       |  <<<fr.inria.osa.runtime.basic.loader>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+| {{{./osa-runtime-basic-launcher/index.html}<<<Basic Launcher>>>}} | <<<f.i.o:>>> | <<<f.i.o.runtime:>>>     | Runtime support for OSA Engines & APIs |  <<< <svnRoot>/packages/runtime/>>> |
+|                    |   <<<osa-root>>>            |  <<<osa-runtime-basic-launcher>>>      |  (Main class, loads model from ADL)          |  <<<fr.inria.osa.runtime.basic.launcher>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+| {{{./osa-model-basic/index.html}<<<Example Models>>>}} | <<<f.i.o:>>> | <<<f.i.o.model.basic:>>>     | Common ancestor for all |  <<< <svnRoot>/packages/examples/basic/>>> |
+|                    |   <<<osa-root>>>            |  <<<osa-model-basic>>>      |  Models          |  <<<fr.inria.osa.model.basic>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+| {{{./osa-model-basic/osa-model-basic-helloworld/index.html}<<<Helloworld model>>>}} | <<<f.i.o.model.basic:>>> | <<<f.i.o.model.basic:>>>     | Hello world model inspired from |  <<< <svnRoot>/packages/examples/basic/>>> |
+|                    |   <<<osa-model-basic>>>            |  <<<osa-model-basic-helloworld>>>      |  helloworld example found in Fractal/julia |  <<<fr.inria.osa.model.basic.helloworld>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+| {{{./osa-expe-basic/index.html}<<<Sample Experiments>>>}} | <<<f.i.o:>>> | <<<f.i.o.experiences:>>>     | Common ancestor for all |  <<< <svnRoot>/packages/examples/basic/>>> |
+|                    |   <<<osa-root>>>            |  <<<osa-expe-basic>>>      |  Experiments          |  <<<fr.inria.osa.experiences.basic>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+| {{{./osa-expe-basic/basic-helloworld-simple/index.html}<<<Helloworld experiments>>>}} | <<<f.i.o.experiences:>>> | <<<f.i.o.experiences.basic:>>>     | Simple experience using the basice engine |  <<< <svnRoot>/packages/examples/basic/>>> |
+|                    |   <<<osa-expe-basic>>>            |  <<<basic-helloworld-simple>>>      | to run the helloworld example         |  <<<fr.inria.osa.experiences.helloworld.simple>>>        |
+*-----------*-------------------+-------------------+--------------------------------+----------+
+
+   (*) <<< <svnRoot>=${svnRootUrl} >>>

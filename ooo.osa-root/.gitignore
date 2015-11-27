@@ -1,0 +1,17 @@
+.settings
+*.md.html
+*~
+#*
+target/
+/bin/
+.pydevproject
+*.pyc
+/ooo.maven-config
+/ooo.engines
+/ooo.engines.newdes
+/ooo.runtime.newdes
+/ooo.runtime.newdes.launcher.event
+/ooo.runtime.newdes.logger
+/ooo.simapis
+/ooo.simapis.newdes
+/ooo.simapis.newdes.osalet
