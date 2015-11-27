@@ -77,6 +77,16 @@ if [[ $# -eq 0 ]] ; then
     checkout_branch
 fi
 
+
+function clone () {
+    for mod in "$MODULES[@]"
+    do
+	echo "module $mod:"
+	git clone "https://github.com/osadevs/$mod.git"
+	echo "ok.\n"
+    done
+}
+
 if [[ "$1" == "-c" ]] ; then
     # Run internal command
     shift
