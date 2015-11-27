@@ -21,7 +21,7 @@
 
 	<groupId>org.osadev.osa</groupId>
 	<artifactId>osa-root</artifactId>
-	<version>0.8.0</version>
+	<version>0.8.1-SNAPSHOT</version>
 	<name>OSA root</name>
 
 	<packaging>pom</packaging>

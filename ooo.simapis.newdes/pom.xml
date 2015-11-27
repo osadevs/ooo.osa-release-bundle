@@ -21,7 +21,7 @@
 	<parent>
 		<groupId>org.osadev.osa.simapis</groupId>
 		<artifactId>osa-simapis</artifactId>
-		<version>0.8.0</version>
+		<version>0.8.1-SNAPSHOT</version>
 		<relativePath>../ooo.simapis/</relativePath>
 	</parent>
 	

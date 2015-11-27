@@ -19,7 +19,7 @@
   <parent>
     <artifactId>maven-config</artifactId>
     <groupId>org.osadev.osa</groupId>
-    <version>0.8.0</version>
+    <version>0.8.1-SNAPSHOT</version>
     <relativePath>ooo.maven-config</relativePath>
   </parent>
 

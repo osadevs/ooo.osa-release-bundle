@@ -19,7 +19,7 @@
 	<parent>
 		<groupId>org.osadev.osa.simapis</groupId>
 		<artifactId>osa-simapis</artifactId>
-		<version>0.8.0</version>
+		<version>0.8.1-SNAPSHOT</version>
 		<relativePath>../ooo.simapis/</relativePath>
 	</parent>
 	<artifactId>osa-simapis-newdes-osalet</artifactId>
@@ -84,7 +84,7 @@
 		<dependency>
 			<groupId>org.osadev.osa.simapis</groupId>
 			<artifactId>osa-simapis-newdes</artifactId>
-			<version>0.8.0</version>
+			<version>0.8.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
