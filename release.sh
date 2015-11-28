@@ -24,6 +24,8 @@
 ## 11/ Release version number bumped up to new version-SNAPSHOT
 ## 12/ git commit + tag + push upstram to origin/master
 
+# Perl's XPATH query parser 
+XPATH=/usr/bin/xpath
 
 MODULES=( ooo.osa-root
 	  ooo.maven-config
@@ -72,6 +74,23 @@ function tag_branch () {
     iterate_git tag 
 }
 
+function parent_version () {
+    file=${1:-pom.xml}
+    $XPATH $file '//parent/version' 2> /dev/null  | sed -E 's/<[^>]+>//g'
+}
+
+function parent_version () {
+    file=${1:-pom.xml}
+    $XPATH $file '//parent/version' 2> /dev/null  | sed -E 's/<[^>]+>//g'
+}
+
+function parent_base_version () {
+    parent_version | cut -d- -f1
+}
+
+function iterate_parent_version () {
+    iterate parent_version
+}
 
 if [[ $# -eq 0 ]] ; then
     checkout_branch
