@@ -101,7 +101,7 @@ function clone () {
     for mod in "$MODULES[@]"
     do
 	echo "module $mod:"
-	git clone "https://github.com/osadevs/$mod.git"
+	git clone "git@github.com:osadevs/$mod.git"
 	echo "ok.\n"
     done
 }
