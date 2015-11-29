@@ -37,6 +37,9 @@ MODULES=( ooo.osa-root
 	  ooo.simapis.newdes
 	  ooo.runtime.newdes
 	  ooo.simapis.newdes.osalet
+	  ooo.model.newdes
+	  ooo.model.newdes.helloworld-event
+	  ooo.model.newdes.helloworld-process
 	)
 
 function iterate () {
