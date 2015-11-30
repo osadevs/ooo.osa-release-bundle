@@ -40,6 +40,9 @@ MODULES=( ooo.osa-root
 	  ooo.model.newdes
 	  ooo.model.newdes.helloworld-event
 	  ooo.model.newdes.helloworld-process
+	  ooo.experiments.newdes
+	  ooo.experiments.newdes.helloworld-event
+	  ooo.experiments.newdes.helloworld-process
 	)
 
 function iterate () {
