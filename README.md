@@ -5,6 +5,9 @@ This small package is used to build OSA new releases.
 OSA uses a maven "flat" multi-modules structure. This structure is known to cause problm with some of the maven plugins, and in particular the maven-release plugin. A classic work-around is to use a small pom file in the parent directory of all
 modules, that will provide the hierarchical structure required by the maven release plugin.
 
+## Getting started
+
+See the minimal [Event-based helloworld demo](https://github.com/osadevs/ooo.experiments.newdes.helloworld-event) or the slightly more elaborate [Process-oriented demo](https://github.com/osadevs/ooo.experiments.newdes.helloworld-process)...
 
 
 ## How to use this package
